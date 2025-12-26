@@ -189,38 +189,38 @@
   },
   "dhcp": {
     "wlan0": {
-      "static ip_address": [ "10.3.141.1" ],
-      "static routers": [ "10.3.141.1" ],
+      "static ip_address": [ "172.18.0.1" ],
+      "static routers": [ "171.18.o.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "wlan1": {
-      "static ip_address": [ "10.9.141.1" ],
-      "static routers": [ "10.9.141.1" ],
+      "static ip_address": [ "172.19.0.1" ],
+      "static routers": [ "172.19.0.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "wlan2": {
-      "static ip_address": [ "10.6.141.1" ],
-      "static routers": [ "10.6.141.1" ],
+      "static ip_address": [ "172.20.0.1" ],
+      "static routers": [ "172.20.0.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "uap0": {
-      "static ip_address": ["192.168.50.1" ],
-      "static routers": [ "192.168.50.1" ],
+      "static ip_address": ["172.18.50.1" ],
+      "static routers": [ "172.18.50.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "eth0": {
-      "static ip_address": [ "192.168.55.1" ],
-      "static routers": [ "192.168.55.1" ],
+      "static ip_address": [ "172.18.55.1" ],
+      "static routers": [ "172.18.55.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "enx": {
-      "static ip_address": [ "192.168.60.1" ],
-      "static routers": [ "192.168.60.1" ],
+      "static ip_address": [ "172.18.60.1" ],
+      "static routers": [ "172.18.60.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
@@ -240,27 +240,27 @@
   },
   "dnsmasq": {
     "wlan0": {
-      "dhcp-range": [ "10.3.141.50,10.3.141.254,255.255.255.0,12h" ]
+      "dhcp-range": [ "172.18.0.50,172.18.0.254,255.255.255.0,12h" ]
     },
     "wlan1": {
-      "dhcp-range": [ "10.9.141.50,10.9.141.254,255.255.255.0,12h" ]
+      "dhcp-range": [ "172.19.0.50,172.19.0.254,255.255.255.0,12h" ]
     },
     "wlan2": {
-      "dhcp-range": [ "10.6.141.50,10.6.141.254,255.255.255.0,12h" ]
+      "dhcp-range": [ "172.20.0.50,172.20.0.254,255.255.255.0,12h" ]
     },
     "uap0": {
-      "dhcp-range": [ "192.168.50.50,192.168.50.150,12h" ]
+      "dhcp-range": [ "172.18.50.50,172.18.50.150,12h" ]
     },
     "eth0": {
-      "dhcp-range": [ "192.168.55.50,192.168.55.150,12h" ]
+      "dhcp-range": [ "172.18.55.50,172.18.55.150,12h" ]
     },
     "enx": {
-      "dhcp-range": [ "192.168.60.50,192.168.60.150,12h" ]
+      "dhcp-range": [ "172.18.60.50,172.18.60.150,12h" ]
     }
   },
   "wireguard": {
     "server": {
-      "Address": [ "10.8.2.1/24" ],
+      "Address": [ "172.18.2.1/24" ],
       "ListenPort": [ "51820" ],
       "DNS": [ "9.9.9.9" ],
       "PostUp": [ "iptables -A FORWARD -i wlan0 -o %i -j ACCEPT; iptables -A FORWARD -i %i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A POSTROUTING -o %i -j MASQUERADE" ],
@@ -269,10 +269,10 @@
       "PreDown": [ "iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d %s -j REJECT" ]
     },
     "peer": {
-      "Address": [ "10.8.1.2/24" ],
-      "Endpoint": [ "10.8.2.1:51820" ],
+      "Address": [ "172.18.1.2/24" ],
+      "Endpoint": [ "172.18.2.1:51820" ],
       "ListenPort": [ "21841" ],
-      "AllowedIPs": [ "10.8.2.0/24" ],
+      "AllowedIPs": [ "172.18.2.0/24" ],
       "PersistentKeepalive": [ "15" ]
     }
   },
